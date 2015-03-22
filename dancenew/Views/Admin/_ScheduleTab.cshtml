@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Schedule>
+
+<div class="panel panel-default">
+    
+    <div class="panel-heading">
+        @Html.ActionLink("Add a new Schedule", "CreateSchedule", null,
+            new { id = "btnSchedule", @class = "btn btn-default" })
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th class="text-right">ID</th>
+                <th>Class Name</th>
+                <th>Group</th>
+                <th>Week Day</th>
+                <th>Level</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Order</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-right">@item.Id</td>
+                    <td>@Html.ActionLink(item.ClassName, "EditSchedule", new {item.Id})</td>
+                    <td>@item.Group</td>
+                    <td>@item.Weekday</td>
+                    <td>@item.Level</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.EndTime</td>
+                    <td>@item.SortPos</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("DeleteSchedule", "Admin"))
+                        {
+                            @Html.Hidden("Id", item.Id)
+                            <input type="submit"
+                                   class="btn btn-default btn-xs"
+                                   value="Delete" />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    
+</div>

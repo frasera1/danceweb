@@ -1,0 +1,81 @@
+﻿@model Schedule
+
+@{
+    ViewBag.Title = "Edit Schedule";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edit @Model.ClassName</h3>
+    </div>
+    @using (Html.BeginForm("EditSchedule", "Admin"))
+    {
+        <div class="panel-body">
+
+            @Html.HiddenFor(model => model.Id)
+
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClassName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ClassName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClassName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Group, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Model.Group != null ? Html.DropDownList("Group", null, new { @class = "form-control" }) : Html.DropDownList("Group", null, String.Empty, new { @class = "form-control" }))
+                    @Html.ValidationMessageFor(model => model.Group)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Level, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Model.Level != null ? Html.DropDownList("Level", null, new { @class = "form-control" }) : Html.DropDownList("Level", null, String.Empty, new { @class = "form-control" }))
+                    @Html.ValidationMessageFor(model => model.Level)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Weekday, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Model.Weekday != null ? Html.DropDownList("WeekDay", null, new {@class = "form-control"}) : Html.DropDownList("WeekDay", null, String.Empty, new {@class = "form-control"}))
+                    @Html.ValidationMessageFor(model => model.Weekday)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartTime, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StartTime)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndTime, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndTime, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EndTime)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Order", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SortPos, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SortPos)
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and return to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

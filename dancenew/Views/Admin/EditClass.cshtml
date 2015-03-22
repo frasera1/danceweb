@@ -1,0 +1,61 @@
+﻿@model Klassen
+
+@{
+    ViewBag.TabName = "_ClassTab";
+    ViewBag.Title = "Edit Klasse";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="modal fade"></div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edit @Model.Title</h3>
+    </div>
+    @using (Html.BeginForm("EditClass", "Admin"))
+    {
+        <div class="panel-body">
+
+            @Html.HiddenFor(model => model.Id)
+
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { @class = "form-control col-md-4" })
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextArea("Description",null, new {@class ="form-control col-md-4", rows = 5})
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @(Model.Type != null ? Html.DropDownList("Type", null, new { @class = "form-control" }) : Html.DropDownList("Type", null, String.Empty, new { @class = "form-control" }))
+                    @Html.ValidationMessageFor(model => model.Type)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Order", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SortPos, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SortPos)
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and return to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Klassen>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="pageheader-default text-center" style="background:url(/Content/Images/studio.jpg);">
+    <div class=" semitransparentbg">
+    <h1 class="animated fadeInLeftBig notransition">Klassen</h1>
+    <p class="animated fadeInRightBig notransition container page-description">
+        Diesen schönen Raum können Sie für Kurse und Workshops mieten. <br />
+        Kontaktieren Sie mich für weitere Informationen.
+    </p>
+    </div>
+</section>
+<div class="wrapsemibox">
+    <div class="semiboxshadow text-center">
+        <img src="~/Content/Template/img/shp.png" class="img-responsive" alt="">
+    </div>
+    <!-- FAQs
+    ================================================== -->
+    <section class="container animated fadeInUp notransition">
+        <!-- 1ST ROW
+        ================================================== -->
+        <div class="row">
+            <!-- BLOCK 1 -->
+            <div class="container-fluid col-md-12">
+                <h3 class="text-center">Kursbeschreibung</h3>
+                <div class="col-md-12">
+
+                   
+                    
+                        @foreach (var item in Model)
+                        {
+                            <h5>@item.Title</h5>
+                            
+                            <div class="panel">@Html.Raw(item.Description)</div>
+                             
+                        }
+
+                   
+                </div>
+
+            </div>
+            <!-- end block 1 -->
+            
+        </div>
+        <!-- 2ND ROW
+        ================================================== -->
+
+    </section>
+    <!--CALL TO ACTION PANEL
+    ================================================== -->
+    <!-- /. end call to action-->
+</div>
+

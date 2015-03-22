@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Frame-Options" content="allow">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dance Discovery Bonn - @ViewBag.Title</title>
+    <!-- Style -->
+    <link href="~/Content/Template/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/Template/css/style.css" rel="stylesheet">
+    <!-- Responsive -->
+    <link href="~/Content/Template/css/responsive.css" rel="stylesheet">
+    <!-- Choose Layout -->
+    <link href="~/Content/Template/css/layout-semiboxed.css" rel="stylesheet">
+    <!-- Choose Skin -->
+    <link href="~/Content/Template/css/skin-orange.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/Template/img/favicon.ico">
+    <!-- IE -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="~/Scripts/html5shiv.js"></script>
+          <script src="~/Scripts/respond.min.js"></script>
+        <![endif]-->
+    <!--[if lte IE 8]>
+        <link href="~/Content/Template/css/ie8.css" rel="stylesheet">
+         <![endif]-->
+</head>
+<body class="off">
+    <!-- /.wrapbox start-->
+    <div class="wrapbox">
+        <!-- TOP AREA
+        ================================================== -->
+        <section class="toparea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 top-text pull-left">@Html.Partial("_LoginPartial")</div>
+                    <div class="col-md-5 top-text animated fadeInLeft">
+                        <i class="icon-phone"></i> Telefon: 0228 2425926 <span class="separator"></span><i class="icon-envelope"></i> Email: ddmail@mydancediscovery.com
+                    </div>
+                    <div class="col-md-3 text-right animated fadeInRight">
+                        <div class="social-icons">
+                            <a class="icon icon-facebook" href="#"></a>
+                            <a class="icon icon-google-plus" href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.toparea end-->
+        <!-- NAV
+            ================================================== -->
+        @helper ActiveItem(string actionName, string controllerName, string areaName)
+{
+    if (ViewContext.RouteData.Values["action"].ToString() == actionName &&
+            ViewContext.RouteData.Values["controller"].ToString() == controllerName &&
+            (ViewContext.RouteData.DataTokens["area"] == null || ViewContext.RouteData.DataTokens["area"].ToString() == areaName))
+    {
+        @:active
+    }
+}
+        <nav class="navbar navbar-fixed-top wowmenu" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/Content/Images/ddlogoweb.png" alt="logo"></a>
+                </div>
+                <ul id="nav" class="nav navbar-nav pull-right">
+                    <li class="@ActiveItem("Index", "Home", null)">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@ActiveItem("Index", "Schedule", null)">@Html.ActionLink("Stundenplan", "Index", "Schedule")</li>
+                    <li class="@ActiveItem("Index", "Klassen", null)">@Html.ActionLink("Kurse", "Index", "Klassen")</li>
+                    <li class="@ActiveItem("About", "Home", null)">@Html.ActionLink("Über Uns", "About", "Home")</li>
+                    <li class="@ActiveItem("Contact", "Home", null)">@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /nav end-->
+        <!-- HEADER IMAGE AREA
+        ================================================== -->
+        @RenderBody()
+        <!-- BEGIN FOOTER
+        ================================================== -->
+        <section>
+            <div class="footer">
+                <div class="container animated fadeInUp notransition">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h1 class="title"><span class="colortext">M</span>öchten <span class="font100">Sie das Studio mieten?</span></h1>
+                            <ul>
+                                <li>Diesen schönen Raum können Sie für Kurse und Workshops mieten.</li>
+                                <li>Stundenplan.</li>
+                                <li>Kontaktieren Sie mich für weitere Informationen.</li>
+                            </ul>
+
+                        </div>
+                        <div class="col-md-4">
+                            <h1 class="title"><span class="colortext">K</span>ontakt</h1>
+                            <div class="footermap">
+                                <p>
+                                    <strong>Adresse: </strong> Kaiserstr. 1c 53113 Bonn
+                                </p>
+                                <p>
+                                    <strong>Phone: </strong> 0228 2425926
+                                </p>
+                                <p>
+                                    <strong>E-Mail-Adresse: </strong> ddmail@mydancediscovery.com
+                                </p>
+                                <ul class="social-icons list-soc">
+                                    <li><a href="#"><i class="icon-facebook"></i></a></li>
+                                    <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h1 class="title"><span class="colortext">L</span>os <span class="font100">geht's</span></h1>
+                            <ul>
+                                <li>Vereinbaren Sie eine kostenlose Probestunde!</li>
+                                <li>Kommen Sie vorbei.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <p id="back-top">
+                <a href="#top"><span></span></a>
+            </p>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="pull-left">
+                                &copy;Dance Discovery Inc.
+                            </p>
+                        </div>
+                        <div class="col-md-8">
+                            <ul class="footermenu pull-right">
+                                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                                <li><a href="@Url.Action("Index","Schedule")">Stundenplan</a></li>
+                                <li><a href="@Url.Action("Index","Klassen")">Kurse</a></li>
+                                <li><a href="@Url.Action("About","Home")">Über Uns</a></li>
+                                <li><a href="@Url.Action("Contact","Home")">Kontakt</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /footer section end-->
+    </div>
+    <!-- /.wrapbox ends-->
+    <!-- SCRIPTS, placed at the end of the document so the pages load faster
+    ================================================== -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/common.js"></script>
+
+    <script>
+        /* ---------------------------------------------------------------------- */
+        /*	Carousel
+        /* ---------------------------------------------------------------------- */
+        $(window).load(function () {
+            $('#carousel-projects').carouFredSel({
+                responsive: true,
+                items: {
+                    width: 200,
+                    height: 295,
+                    visible: {
+                        min: 1,
+                        max: 4
+                    }
+                },
+                width: '200px',
+                height: '295px',
+                auto: true,
+                circular: true,
+                infinite: false,
+                prev: {
+                    button: "#car_prev",
+                    key: "left",
+                },
+                next: {
+                    button: "#car_next",
+                    key: "right",
+                },
+                swipe: {
+                    onMouse: true,
+                    onTouch: true
+                },
+                scroll: {
+                    easing: "",
+                    duration: 1200
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        /*	Tabs1&2
+        /* ---------------------------------------------------------------------- */
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true   // 100% fit in a container
+            });
+            $('#verticalTab').easyResponsiveTabs({
+                type: 'horizontal',
+                width: 'auto',
+                fit: true
+            });
+        });
+        /* ---------------------------------------------------------------------- */
+    </script>
+    <script>
+        //CALL PRETTY PHOTO
+        $(document).ready(function () {
+            $("a[data-gal^='prettyPhoto']").prettyPhoto({ social_tools: '', animation_speed: 'normal', theme: 'dark_rounded' });
+        });
+    </script>
+    <script>
+        //MASONRY
+        $(document).ready(function () {
+            var $container = $('#content');
+            $container.imagesLoaded(function () {
+                $container.isotope({
+                    filter: '*',
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear',
+                        queue: false,
+                    }
+                });
+            });
+            $('#filter a').click(function (event) {
+                $('a.selected').removeClass('selected');
+                var $this = $(this);
+                $this.addClass('selected');
+                var selector = $this.attr('data-filter');
+                $container.isotope({
+                    filter: selector
+                });
+                return false;
+            });
+        });
+    </script>
+    <script>
+        //ROLL ON HOVER
+        $(function () {
+            $(".roll").css("opacity", "0");
+            $(".roll").hover(function () {
+                $(this).stop().animate({
+                    opacity: .8
+                }, "slow");
+            },
+                function () {
+                    $(this).stop().animate({
+                        opacity: 0
+                    }, "slow");
+                });
+        });
+    </script>
+    @RenderSection("Styles", required: false)
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+

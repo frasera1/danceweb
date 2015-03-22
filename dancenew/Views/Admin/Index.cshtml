@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h4 class="text-center">Administer Dance Discovery Content</h4>
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#_ScheduleTab" role="tab" data-toggle="tab">Schedule</a></li>
+    <li><a href="#_ClassTab" role="tab" data-toggle="tab">Class</a></li>
+    <li><a href="#_UpdatesTab" role="tab" data-toggle="tab">Updates</a></li>
+    <li><a href="#_BioTab" role="tab" data-toggle="tab">About Us</a></li>
+</ul>
+
+<!-- Tab Content Containers -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="_ScheduleTab">@Html.Partial("_ScheduleTab")</div>
+    <div class="tab-pane fade" id="_ClassTab"></div>
+    <div class="tab-pane fade" id="_UpdatesTab"></div>
+    <div class="tab-pane fade" id="_BioTab"></div>
+</div>
+
+@section scripts {
+    <script>
+        $('#tabstrip a').click(function (e) {
+            e.preventDefault();
+
+            //$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+            //    //save the latest tab; use cookies if you like 'em better:
+            //    localStorage.setItem('lastTab', $(this).attr('href').substr(1));
+            //});
+
+            var tabID = $(this).attr("href").substr(1);
+            $(".tab-pane").each(function () {
+                console.log("clearing " + $(this).attr("id") + " tab");
+                $(this).empty();
+            });
+            $.ajax({
+                url: "/@ViewContext.RouteData.Values["controller"]/" + tabID,
+                cache: false,
+                type: "get",
+                dataType: "html",
+                success: function(result) {
+                    $("#" + tabID).html(result);
+                }
+
+            });
+
+            //go to the latest tab, if it exists:
+            //var lastTab = localStorage.getItem('lastTab');
+            //if (lastTab) {
+
+            //    $('a[href=' + lastTab + ']').tab('show');
+            //}
+            //else {
+            //    // Set the first tab if cookie do not exist
+            //    $('a[data-toggle="tab"]:first').tab('show');
+            //}
+            $(this).tab('show');
+        });
+
+       
+    </script>
+}
+

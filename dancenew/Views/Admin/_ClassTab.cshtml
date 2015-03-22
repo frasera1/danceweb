@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Klassen>
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        @Html.ActionLink("Add a new Klasse", "CreateClass", null,
+            new { id = "btnClass", @class = "btn btn-default" })
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th class="text-right col-md-1">ID</th>
+                <th class="col-md-3">Title</th>
+                <th class="col-md-5">Description</th>
+                <th class="col-md-2">Type</th>
+                <th class="col-md-1">Order</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-right">@item.Id</td>
+                    <td>@Html.ActionLink(item.Title, "EditClass", new { item.Id })</td>
+                    <td>@item.Description</td>
+                    <td>@item.Type</td>
+                    <td>@item.SortPos</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("DeleteClass", "Admin"))
+                        {
+                            @Html.Hidden("Id", item.Id)
+                            <input type="submit"
+                                   class="btn btn-default btn-xs"
+                                   value="Delete" />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Bio>
+
+@{
+    ViewBag.Title = "Üeber Uns";
+}
+
+<section class="pageheader-default text-center" style="background:url(/Content/Images/studio.jpg);">
+    <div class=" semitransparentbg">
+    <h1 class="animated fadeInLeftBig notransition">Über Uns</h1>
+    <p class="animated fadeInRightBig notransition container page-description">
+        Diesen schönen Raum können Sie für Kurse und Workshops mieten.<br />
+        Kontaktieren Sie mich für weitere Informationen.
+    </p>
+    </div>
+</section>
+<div class="wrapsemibox">
+    <div class="semiboxshadow text-center">
+        <img src="~/Content/Template/img/shp.png" class="img-responsive" alt="">
+    </div>
+    <!-- FAQs
+    ================================================== -->
+    <section class="container animated fadeInUp notransition">
+        <!-- 1ST ROW
+        ================================================== -->
+        <div class="row">
+            <!-- BLOCK 1 -->
+            <div class="container-fluid col-md-12">
+                <div class="well well-lg col-md-12">
+
+                    <div class="thumbnail col-md-2 pull-right">
+                        <img src="~/Content/Images/director.jpg" alt="director photo" />
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        
+
+                        <div class="panel2 col-md-9">
+                            <h5>@item.FullName</h5>
+                            @Html.Raw(item.Biography)
+                        </div>
+
+                    }
+                    <div class="col-md-1"></div>
+                    
+
+
+                </div>
+
+            </div>
+            <!-- end block 1 -->
+
+        </div>
+        <!-- 2ND ROW
+        ================================================== -->
+
+    </section>
+    <!--CALL TO ACTION PANEL
+    ================================================== -->
+    <!-- /. end call to action-->
+</div>
+
+
+
